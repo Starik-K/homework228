@@ -1,110 +1,127 @@
-//zadanichko 1
-//
+//дз1
 //#include <iostream>
 //using namespace std;
 //
-//int LinearSearch(int arr[], int n, int key)
+//void sortArray(int arr[], int size, bool descending = false)
 //{
-//    for (int i = 0; i < n; i++)
+//    for (int i = 0; i < size - 1; i++)
 //    {
-//        if (arr[i] == key)
-//            return i;
+//        for (int j = 0; j < size - i - 1; j++)
+//        {
+//            if ((!descending && arr[j] > arr[j + 1]) ||
+//                (descending && arr[j] < arr[j + 1]))
+//            {
+//                swap(arr[j], arr[j + 1]);
+//            }
+//        }
 //    }
-//
-//    return -1;
 //}
 //
 //int main()
 //{
-//    int arr[] = { 5, 2, 8, 1, 9 };
-//    int n = 5;
-//    int key;
+//    int arr[10] = { 5, 2, 8, 1, 9, 3, 7, 4, 6, 0 };
 //
-//    cin >> key;
+//    sortArray(arr, 10, true);
 //
-//    int pos = LinearSearch(arr, n, key);
-//
-//    if (pos != -1)
-//        cout << "Знайдено. Індекс: " << pos;
-//    else
-//        cout << "Не знайдено";
+//    for (int i = 0; i < 10; i++)
+//        cout << arr[i] << " ";
 //
 //    return 0;
 //}
 //
-//zadanya 2
-//#include <iostream>
-//using namespace std;
+//дз2
 //
-//int BinarySearch(int arr[], int n, int key)
+//void sortHalfArray(int arr[], int size)
 //{
-//    int left = 0;
-//    int right = n - 1;
-//
-//    while (left <= right)
+//    int mid = size / 2;
+//    for (int i = 1; i < mid; i++)
 //    {
-//        int mid = (left + right) / 2;
+//        int key = arr[i];
+//        int j = i - 1;
 //
-//        if (arr[mid] == key)
-//            return mid;
+//        while (j >= 0 && arr[j] < key)
+//        {
+//            arr[j + 1] = arr[j];
+//            j--;
+//        }
 //
-//        if (arr[mid] < key)
-//            left = mid + 1;
-//        else
-//            right = mid - 1;
+//        arr[j + 1] = key;
 //    }
 //
-//    return -1;
+//    for (int i = mid + 1; i < size; i++)
+//    {
+//        int key = arr[i];
+//        int j = i - 1;
+//
+//        while (j >= mid && arr[j] > key)
+//        {
+//            arr[j + 1] = arr[j];
+//            j--;
+//        }
+//
+//        arr[j + 1] = key;
+//    }
 //}
 //
 //int main()
 //{
-//    int arr[] = { 1, 3, 5, 7, 9 };
-//    int n = 5;
-//    int key;
+//    int arr[10] = { 5, 8, 1, 9, 2, 7, 4, 6, 3, 0 };
 //
-//    cin >> key;
+//    sortHalfArray(arr, 10);
 //
-//    int pos = BinarySearch(arr, n, key);
-//
-//    if (pos != -1)
-//        cout << "Знайдено. Індекс: " << pos;
-//    else
-//        cout << "Не знайдено";
+//    for (int i = 0; i < 10; i++)
+//        cout << arr[i] << " ";
 //
 //    return 0;
 //}
+//дз3
 //
-//zadanijko 3
-//
-//#include <iostream>
-//using namespace std;
-//
-//int BinaryToDecimal(int bin)
+//void sortBetweenNegatives(int arr[], int size)
 //{
-//    int dec = 0;
-//    int power = 1;
+//    int left = -1;
+//    int right = -1;
 //
-//    while (bin > 0)
+//    for (int i = 0; i < size; i++)
 //    {
-//        int digit = bin % 10;
-//        dec += digit * power;
-//
-//        power *= 2;
-//        bin /= 10;
+//        if (arr[i] < 0)
+//        {
+//            left = i;
+//            break;
+//        }
 //    }
 //
-//    return dec;
+//    for (int i = size - 1; i >= 0; i--)
+//    {
+//        if (arr[i] < 0)
+//        {
+//            right = i;
+//            break;
+//        }
+//    }
+//
+//    if (left == -1 || right == -1 || left >= right - 1)
+//        return;
+//
+//    for (int i = left + 1; i < right; i++)
+//    {
+//        for (int j = left + 1; j < right - (i - left - 1) - 1; j++)
+//        {
+//            if (arr[j] > arr[j + 1])
+//            {
+//                swap(arr[j], arr[j + 1]);
+//            }
+//        }
+//    }
 //}
 //
 //int main()
 //{
-//    int bin;
+//    int arr[10] = { 5, -3, 8, 1, 4, 0, 2, 7, -1, 6 };
 //
-//    cin >> bin;
+//    sortBetweenNegatives(arr, 10);
 //
-//    cout << "Десяткове число: "
-//        << BinaryToDecimal(bin);
+//    for (int i = 0; i < 10; i++)
+//        cout << arr[i] << " ";
 //
 //    return 0;
 //}
