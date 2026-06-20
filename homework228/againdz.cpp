@@ -1,229 +1,98 @@
-//zadanie 1
 #include <iostream>
-#include <ctime>
+
 using namespace std;
 
-int main() {
-    const int n = 10;
-    int a[n];
+double Max(int* a, int size)
+{
+    int max = a[0];
 
-    srand(time(0));
-
-    for (int i = 0; i < n; i++) {
-        a[i] = rand() % 100;
-        cout << a[i] << " ";
+    for (int i = 1; i < size; i++)
+    {
+        if (a[i] > max)
+            max = a[i];
     }
 
-    int mn = a[0];
-    int mx = a[0];
-
-    for (int i = 1; i < n; i++) {
-        if (a[i] < mn)
-            mn = a[i];
-
-        if (a[i] > mx)
-            mx = a[i];
-    }
-
-    cout << endl;
-    cout << "Min = " << mn << endl;
-    cout << "Max = " << mx;
-
-    return 0;
+    return max;
 }
 
-//zadanie 2
-#include <iostream>
-using namespace std;
+double Min(int* a, int size)
+{
+    int min = a[0];
 
-int main() {
-    int p[12];
-
-    for (int i = 0; i < 12; i++) {
-        cin >> p[i];
+    for (int i = 1; i < size; i++)
+    {
+        if (a[i] < min)
+            min = a[i];
     }
 
-    int a, b;
-    cin >> a >> b;
-
-    int mx = p[a - 1];
-    int mn = p[a - 1];
-
-    int mxm = a;
-    int mnm = a;
-
-    for (int i = a - 1; i < b; i++) {
-        if (p[i] > mx) {
-            mx = p[i];
-            mxm = i + 1;
-        }
-
-        if (p[i] < mn) {
-            mn = p[i];
-            mnm = i + 1;
-        }
-    }
-
-    cout << "Max(скачай) - " << mxm << endl;
-    cout << "Min - " << mnm;
-
-    return 0;
+    return min;
 }
 
-//zadanie 3
-#include <iostream>
-using namespace std;
+double Avg(int* a, int size)
+{
+    int sum = 0;
 
-int main() {
-    int n;
+    for (int i = 0; i < size; i++)
+        sum += a[i];
 
-    cin >> n;
-
-    double a[100];
-
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-
-    double sumaVid = 0;
-
-    for (int i = 0; i < n; i++) {
-        if (a[i] < 0)
-            sumaVid += a[i];
-    }
-
-    int minI = 0;
-    int maxI = 0;
-
-    for (int i = 1; i < n; i++) {
-        if (a[i] < a[minI])
-            minI = i;
-
-        if (a[i] > a[maxI])
-            maxI = i;
-    }
-
-    int l, r;
-
-    if (minI < maxI) {
-        l = minI;
-        r = maxI;
-    }
-    else {
-        l = maxI;
-        r = minI;
-    }
-
-    double dob = 1;
-
-    for (int i = l + 1; i < r; i++) {
-        dob *= a[i];
-    }
-
-    double dobParni = 1;
-
-    for (int i = 0; i < n; i += 2) {
-        dobParni *= a[i];
-    }
-
-    int firstNeg = -1;
-    int lastNeg = -1;
-
-    for (int i = 0; i < n; i++) {
-        if (a[i] < 0) {
-            firstNeg = i;
-            break;
-        }
-    }
-
-    for (int i = n - 1; i >= 0; i--) {
-        if (a[i] < 0) {
-            lastNeg = i;
-            break;
-        }
-    }
-
-    double sumaMizh = 0;
-
-    if (firstNeg != -1 && lastNeg != -1) {
-        for (int i = firstNeg + 1; i < lastNeg; i++) {
-            sumaMizh += a[i];
-        }
-    }
-
-    cout << "сума від'ємних = " << sumaVid << endl;
-    cout << "добуток між min i max = " << dob << endl;
-    cout << "добуток парних індексів = " << dobParni << endl;
-    cout << "сума між від'ємними = " << sumaMizh;
-
-    return 0;
+    return (double)sum / size;
 }
 
-//zadanie 4
-#include <iostream>
-using namespace std;
+double Action(int* a, int* b, int sizeA, int sizeB,
+    double (*func)(int*, int))
+{
+    int size = sizeA + sizeB;
 
-int main() {
-    int a[10];
-    int b[5];
-    int c[5];
+    int* c = new int[size];
 
-    for (int i = 0; i < 10; i++) {
-        cin >> a[i];
-    }
+    for (int i = 0; i < sizeA; i++)
+        c[i] = a[i];
 
-    for (int i = 0; i < 5; i++) {
-        b[i] = a[i];
-    }
+    for (int i = 0; i < sizeB; i++)
+        c[sizeA + i] = b[i];
 
-    for (int i = 0; i < 5; i++) {
-        c[i] = a[i + 5];
-    }
+    double result = func(c, size);
 
-    cout << "масив B - ";
+    delete[] c;
 
-    for (int i = 0; i < 5; i++) {
-        cout << b[i] << " ";
-    }
-
-    cout << endl;
-
-    cout << "масив C - ";
-
-    for (int i = 0; i < 5; i++) {
-        cout << c[i] << " ";
-    }
-
-    return 0;
+    return result;
 }
 
-//zadanie 5
+int main()
+{
+    int a[] = { 4, 8, 2, 9, 1 };
+    int b[] = { 7, 3, 5, 6, 10 };
 
-#include <iostream>
-using namespace std;
+    int choice;
 
-int main() {
-    const int n = 5;
+    cout << "1 - Max" << endl;
+    cout << "2 - Min" << endl;
+    cout << "3 - Avg" << endl;
+    cout << "Choice: ";
+    cin >> choice;
 
-    int a[n], b[n], c[n];
+    double result = 0;
 
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
+    switch (choice)
+    {
+    case 1:
+        result = Action(a, b, 5, 5, Max);
+        break;
+
+    case 2:
+        result = Action(a, b, 5, 5, Min);
+        break;
+
+    case 3:
+        result = Action(a, b, 5, 5, Avg);
+        break;
+
+    default:
+        cout << "Wrong choice!";
+        return 0;
     }
 
-    for (int i = 0; i < n; i++) {
-        cin >> b[i];
-    }
-
-    for (int i = 0; i < n; i++) {
-        c[i] = a[i] + b[i];
-    }
-
-    cout << "Результат: ";
-
-    for (int i = 0; i < n; i++) {
-        cout << c[i] << " ";
-    }
+    cout << "Result = " << result;
 
     return 0;
 }
