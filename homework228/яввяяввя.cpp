@@ -1,164 +1,82 @@
+////задание 1
 //#include <iostream>
+//
 //using namespace std;
 //
-//// Завдання 1
-//void task1() {
-//    int n;
-//    cout << "Введіть число: ";
-//    cin >> n;
-//
-//    for (int i = 0; i <= n; i++) {
-//        cout << i << " ";
-//    }
-//    cout << endl;
+//double add(double a, double b)
+//{
+//    return a + b;
 //}
 //
-//// Завдання 2
-//void task2() {
-//    int a, b;
+//double sub(double a, double b)
+//{
+//    return a - b;
+//}
 //
-//    cout << "Введіть дві межі діапазону: ";
+//double mul(double a, double b)
+//{
+//    return a * b;
+//}
+//
+//double divi(double a, double b)
+//{
+//    return a / b;
+//}
+//
+//int main()
+//{
+//    double a, b;
+//
+//    cout << "Enter two numbers: ";
 //    cin >> a >> b;
 //
-//    if (a > b) {
-//        swap(a, b);
-//    }
+//    cout << "0 - +" << endl;
+//    cout << "1 - -" << endl;
+//    cout << "2 - *" << endl;
+//    cout << "3 - /" << endl;
 //
-//    cout << "\nУсі числа діапазону:\n";
-//    for (int i = a; i <= b; i++) {
-//        cout << i << " ";
-//    }
-//
-//    cout << "\n\nПарні числа:\n";
-//    for (int i = a; i <= b; i++) {
-//        if (i % 2 == 0)
-//            cout << i << " ";
-//    }
-//
-//    cout << "\n\nНепарні числа:\n";
-//    for (int i = a; i <= b; i++) {
-//        if (i % 2 != 0)
-//            cout << i << " ";
-//    }
-//
-//    cout << "\n\nЧисла, кратні 7:\n";
-//    for (int i = a; i <= b; i++) {
-//        if (i % 7 == 0)
-//            cout << i << " ";
-//    }
-//
-//    cout << endl;
-//}
-//
-//// Завдання 3
-//void task3() {
-//    int a, b;
-//    int sum = 0;
-//
-//    cout << "Введіть дві межі діапазону: ";
-//    cin >> a >> b;
-//
-//    if (a > b) {
-//        swap(a, b);
-//    }
-//
-//    for (int i = a; i <= b; i++) {
-//        sum += i;
-//    }
-//
-//    cout << "Сума чисел діапазону = " << sum << endl;
-//}
-//
-//// Завдання 4
-//void task4() {
-//    int num;
-//    int sum = 0;
-//
-//    cout << "Вводьте числа (0 для завершення):\n";
-//
-//    do {
-//        cin >> num;
-//        sum += num;
-//    } while (num != 0);
-//
-//    cout << "Сума чисел = " << sum << endl;
-//}
-//
-//// Завдання 5
-//void task5() {
-//    srand(time(0));
-//
-//    int secret = rand() % 500 + 1;
-//    int guess;
-//    int attempts = 0;
-//
-//    cout << "Гра 'Вгадай число'!\n";
-//    cout << "Загадано число від 1 до 500\n";
-//    cout << "Введіть 0 для виходу\n";
-//
-//    while (true) {
-//        cout << "Ваш варіант: ";
-//        cin >> guess;
-//
-//        if (guess == 0) {
-//            cout << "Гру завершено.\n";
-//            break;
-//        }
-//
-//        attempts++;
-//
-//        if (guess > secret) {
-//            cout << "Загадане число менше\n";
-//        }
-//        else if (guess < secret) {
-//            cout << "Загадане число більше\n";
-//        }
-//        else {
-//            cout << "Вітаємо! Ви вгадали число\n";
-//            cout << "Кількість спроб =  " << attempts << endl;
-//            break;
-//        }
-//    }
-//}
-//
-//int main() {
 //    int choice;
+//    cin >> choice;
 //
-//    do {
-//        cout << "\n МЕНЮ n";
-//        cout << "1 = Завдання 1\n";
-//        cout << "2 = Завдання 2\n";
-//        cout << "3 = Завдання 3\n";
-//        cout << "4 = Завдання 4\n";
-//        cout << "5 = Завдання 5\n";
-//        cout << "0 = Вихід\n";
-//        cout << "Ваш вибір: ";
-//        cin >> choice;
+//    double (*func[4])(double, double) =
+//    {
+//        add,
+//        sub,
+//        mul,
+//        divi
+//    };
 //
-//        switch (choice) {
-//        case 1:
-//            task1();
-//            break;
-//        case 2:
-//            task2();
-//            break;
-//        case 3:
-//            task3();
-//            break;
-//        case 4:
-//            task4();
-//            break;
-//        case 5:
-//            task5();
-//            break;
-//        case 0:
-//            cout << "Програму завершено\n";
-//            break;
-//        default:
-//            cout << "Невірний вибір\n";
-//        }
+//    cout << "Result = "
+//        << func[choice](a, b);
 //
-//    } while (choice != 0);
+//    return 0;
+//}
+
+////задание 2
+//#include <iostream>
+//
+//using namespace std;
+//
+//void SumArrays(int* a, int* b, int* c, int size)
+//{
+//    for (int i = 0; i < size; i++)
+//        c[i] = a[i] + b[i];
+//}
+//
+//int main()
+//{
+//    const int size = 5;
+//
+//    int a[size] = { 1, 2, 3, 4, 5 };
+//    int b[size] = { 5, 4, 3, 2, 1 };
+//    int c[size];
+//
+//    SumArrays(a, b, c, size);
+//
+//    cout << "Array C:" << endl;
+//
+//    for (int i = 0; i < size; i++)
+//        cout << c[i] << " ";
 //
 //    return 0;
 //}
