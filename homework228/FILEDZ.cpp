@@ -1,144 +1,85 @@
-//#1
+//dezeha
 //#include <iostream>
 //#include <cstring>
 //using namespace std;
 //
-//void DeleteChar(char str[], int pos)
+//char* toBinary(int number)
 //{
-//    int len = strlen(str);
+//    char* result = new char[33];
+//    result[32] = '\0';
 //
-//    for (int i = pos; i < len; i++)
-//        str[i] = str[i + 1];
-//}
-//
-//int main()
-//{
-//    char str[100];
-//
-//    cin.getline(str, 100);
-//
-//    int pos;
-//    cin >> pos;
-//
-//    DeleteChar(str, pos);
-//
-//    cout << str;
-//
-//    return 0;
-//}
-//
-//#2
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//
-//void DeleteAll(char str[], char ch)
-//{
-//    int j = 0;
-//
-//    for (int i = 0; str[i] != '\0'; i++)
+//    for (int i = 31; i >= 0; i--)
 //    {
-//        if (str[i] != ch)
-//        {
-//            str[j] = str[i];
-//            j++;
-//        }
+//        result[31 - i] = ((number >> i) & 1) + '0';
 //    }
 //
-//    str[j] = '\0';
+//    return result;
 //}
 //
-//int main()
+//char* toHex(int number)
 //{
-//    char str[100];
-//    char ch;
+//    char* result = new char[9];
+//    result[8] = '\0';
 //
-//    cin.getline(str, 100);
-//    cin >> ch;
+//    char hex[] = "0123456789ABCDEF";
 //
-//    DeleteAll(str, ch);
-//
-//    cout << str;
-//
-//    return 0;
-//}
-//
-//#3
-//#include <iostream>
-//#include <cstring>
-//using namespace std;
-//
-//void InsertChar(char str[], int pos, char ch)
-//{
-//    int len = strlen(str);
-//
-//    for (int i = len; i >= pos; i--)
-//        str[i + 1] = str[i];
-//
-//    str[pos] = ch;
-//}
-//
-//int main()
-//{
-//    char str[100];
-//
-//    cin.getline(str, 100);
-//
-//    int pos;
-//    char ch;
-//
-//    cin >> pos;
-//    cin >> ch;
-//
-//    InsertChar(str, pos, ch);
-//
-//    cout << str;
-//
-//    return 0;
-//}
-//
-//#4
-//#include <iostream>
-//using namespace std;
-//
-//int main()
-//{
-//    char str[100];
-//
-//    cin.getline(str, 100);
-//
-//    for (int i = 0; str[i] != '\0'; i++)
+//    for (int i = 7; i >= 0; i--)
 //    {
-//        if (str[i] == '.')
-//            str[i] = '!';
+//        result[i] = hex[number % 16];
+//        number /= 16;
 //    }
 //
-//    cout << str;
-//
-//    return 0;
+//    return result;
 //}
 //
-//#5
-//#include <iostream>
-//using namespace std;
+//int binaryToDecimal(char* binary)
+//{
+//    int number = 0;
+//
+//    for (int i = 0; binary[i] != '\0'; i++)
+//    {
+//        number = number * 2 + (binary[i] - '0');
+//    }
+//
+//    return number;
+//}
+//
+//int hexToDecimal(char* hex)
+//{
+//    int number = 0;
+//
+//    for (int i = 0; hex[i] != '\0'; i++)
+//    {
+//        char c = hex[i];
+//
+//        if (c >= '0' && c <= '9')
+//            number = number * 16 + (c - '0');
+//        else if (c >= 'A' && c <= 'F')
+//            number = number * 16 + (c - 'A' + 10);
+//        else if (c >= 'a' && c <= 'f')
+//            number = number * 16 + (c - 'a' + 10);
+//    }
+//
+//    return number;
+//}
 //
 //int main()
 //{
-//    char str[100];
-//    char ch;
+//    int number;
+//    cout << "Enter number: ";
+//    cin >> number;
 //
-//    cin.getline(str, 100);
-//    cin >> ch;
+//    char* binary = toBinary(number);
+//    char* hex = toHex(number);
 //
-//    int count = 0;
+//    cout << "Binary: " << binary << endl;
+//    cout << "Hex: " << hex << endl;
 //
-//    for (int i = 0; str[i] != '\0'; i++)
-//    {
-//        if (str[i] == ch)
-//            count++;
-//    }
+//    cout << "Binary to decimal: " << binaryToDecimal(binary) << endl;
+//    cout << "Hex to decimal: " << hexToDecimal(hex) << endl;
 //
-//    cout << count;
+//    delete[] binary;
+//    delete[] hex;
 //
 //    return 0;
 //}
