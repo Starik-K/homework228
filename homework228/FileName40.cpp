@@ -1,265 +1,147 @@
 //зд1
 //#include <iostream>
-//
+//#include <fstream>
+//#include <cstring>
 //using namespace std;
-//
-//void replaceSpaces(char str[])
-//{
-//    for (int i = 0; str[i] != '\0'; i++)
-//    {
-//        if (str[i] == ' ')
-//            str[i] = '\t';
-//    }
-//}
 //
 //int main()
 //{
-//    char str[256];
+//    ifstream file1("file1.txt");
+//    ifstream file2("file2.txt");
 //
-//    cout << "Введіть рядок: ";
-//    cin.getline(str, 256);
+//    char line1[256];
+//    char line2[256];
 //
-//    replaceSpaces(str);
+//    int number = 1;
+//    bool same = true;
 //
-//    cout << "Результат:\n" << str;
+//    while (file1.getline(line1, 256) && file2.getline(line2, 256))
+//    {
+//        if (strcmp(line1, line2) != 0)
+//        {
+//            cout << "Rядок " << number << " не збігається:\n";
+//            cout << "Файл 1: " << line1 << endl;
+//            cout << "Файл 2: " << line2 << endl;
+//            same = false;
+//        }
+//        number++;
+//    }
+//
+//    while (file1.getline(line1, 256))
+//    {
+//        cout << "Зайвий рядок у першому файлі: " << line1 << endl;
+//        same = false;
+//    }
+//
+//    while (file2.getline(line2, 256))
+//    {
+//        cout << "Зайвий рядок у другому файлі: " << line2 << endl;
+//        same = false;
+//    }
+//
+//    if (same)
+//        cout << "Файли однакові." << endl;
+//
+//    file1.close();
+//    file2.close();
 //
 //    return 0;
 //}
 //
 //зд2
 //#include <iostream>
-//#include <cctype>
-//
+//#include <fstream>
 //using namespace std;
+//
+//bool vowel(char c)
+//{
+//    char letters[] = "AEIOUYaeiouy";
+//    for (int i = 0; letters[i] != '\0'; i++)
+//        if (c == letters[i])
+//            return true;
+//    return false;
+//}
 //
 //int main()
 //{
-//    char str[256];
+//    ifstream in("text.txt");
+//    ofstream out("result.txt");
 //
-//    cout << "Введіть рядок: ";
-//    cin.getline(str, 256);
+//    char ch;
 //
-//    int letters = 0;
+//    int symbols = 0;
+//    int lines = 1;
+//    int vowels = 0;
+//    int consonants = 0;
 //    int digits = 0;
-//    int others = 0;
 //
-//    for (int i = 0; str[i] != '\0'; i++)
+//    while (in.get(ch))
 //    {
-//        if (isalpha(str[i]))
-//            letters++;
-//        else if (isdigit(str[i]))
+//        symbols++;
+//
+//        if (ch == '\n')
+//            lines++;
+//
+//        if (ch >= '0' && ch <= '9')
 //            digits++;
-//        else
-//            others++;
+//
+//        if ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z'))
+//        {
+//            if (vowel(ch))
+//                vowels++;
+//            else
+//                consonants++;
+//        }
 //    }
 //
-//    cout << "Літер: " << letters << endl;
-//    cout << "Цифр: " << digits << endl;
-//    cout << "Інших символів: " << others << endl;
+//    out << "Кількість символів: " << symbols << endl;
+//    out << "Кількість рядків: " << lines << endl;
+//    out << "Кількість голосних: " << vowels << endl;
+//    out << "Кількість приголосних: " << consonants << endl;
+//    out << "Кількість цифр: " << digits << endl;
+//
+//    in.close();
+//    out.close();
 //
 //    return 0;
 //}
 //
 //зд3
 //#include <iostream>
-//
+//#include <fstream>
 //using namespace std;
 //
-//int main()
+//char encrypt(char c, int key)
 //{
-//    char str[256];
+//    if (c >= 'A' && c <= 'Z')
+//        return (c - 'A' + key) % 26 + 'A';
 //
-//    cout << "Введіть речення: ";
-//    cin.getline(str, 256);
+//    if (c >= 'a' && c <= 'z')
+//        return (c - 'a' + key) % 26 + 'a';
 //
-//    int count = 0;
-//    bool word = false;
-//
-//    for (int i = 0; str[i] != '\0'; i++)
-//    {
-//        if (str[i] != ' ' && str[i] != '\t')
-//        {
-//            if (!word)
-//            {
-//                count++;
-//                word = true;
-//            }
-//        }
-//        else
-//        {
-//            word = false;
-//        }
-//    }
-//
-//    cout << "Кількість слів: " << count;
-//
-//    return 0;
-//}
-//
-//зд4
-//#include <iostream>
-//#include <cstring>
-//
-//using namespace std;
-//
-//int main()
-//{
-//    char str[256];
-//
-//    cout << "Введіть рядок: ";
-//    cin.getline(str, 256);
-//
-//    int left = 0;
-//    int right = strlen(str) - 1;
-//
-//    bool palindrome = true;
-//
-//    while (left < right)
-//    {
-//        if (str[left] != str[right])
-//        {
-//            palindrome = false;
-//            break;
-//        }
-//
-//        left++;
-//        right--;
-//    }
-//
-//    if (palindrome)
-//        cout << "Рядок є паліндромом";
-//    else
-//        cout << "Рядок не є паліндромом";
-//
-//    return 0;
-//}
-
-//задание 5
-//#include <iostream>
-//
-//using namespace std;
-//
-//int mystrlen(const char* str)
-//{
-//    int len = 0;
-//
-//    while (str[len] != '\0')
-//        len++;
-//
-//    return len;
-//}
-//char* mystrcpy(char* str1, const char* str2)
-//{
-//    int i = 0;
-//
-//    while (str2[i] != '\0')
-//    {
-//        str1[i] = str2[i];
-//        i++;
-//    }
-//
-//    str1[i] = '\0';
-//
-//    return str1;
-//}
-//
-//char* mystrcat(char* str1, const char* str2)
-//{
-//    int i = 0;
-//
-//    while (str1[i] != '\0')
-//        i++;
-//
-//    int j = 0;
-//
-//    while (str2[j] != '\0')
-//    {
-//        str1[i] = str2[j];
-//        i++;
-//        j++;
-//    }
-//
-//    str1[i] = '\0';
-//
-//    return str1;
-//}
-//
-//char* mystrchr(char* str, char s)
-//{
-//    for (int i = 0; str[i] != '\0'; i++)
-//    {
-//        if (str[i] == s)
-//            return &str[i];
-//    }
-//
-//    return 0;
-//}
-//
-//char* mystrstr(char* str1, char* str2)
-//{
-//    if (str2[0] == '\0')
-//        return str1;
-//
-//    for (int i = 0; str1[i] != '\0'; i++)
-//    {
-//        int j = 0;
-//
-//        while (str1[i + j] != '\0' &&
-//            str2[j] != '\0' &&
-//            str1[i + j] == str2[j])
-//        {
-//            j++;
-//        }
-//
-//        if (str2[j] == '\0')
-//            return &str1[i];
-//    }
-//
-//    return 0;
+//    return c;
 //}
 //
 //int main()
 //{
-//    char str1[100] = "Hello";
-//    char str2[100] = " World";
+//    ifstream in("text.txt");
+//    ofstream out("cipher.txt");
 //
-//    cout << "mystrlen(str1) = "
-//        << mystrlen(str1) << endl;
+//    int key;
+//    cout << "Введіть ключ: ";
+//    cin >> key;
 //
-//    char copy[100];
-//    mystrcpy(copy, str1);
-//    cout << "mystrcpy: "
-//        << copy << endl;
+//    char ch;
 //
-//    mystrcat(str1, str2);
-//    cout << "mystrcat: "
-//        << str1 << endl;
+//    while (in.get(ch))
+//    {
+//        out << encrypt(ch, key);
+//    }
 //
-//    char symbol;
-//    cout << "\nВведіть символ для пошуку: ";
-//    cin >> symbol;
+//    in.close();
+//    out.close();
 //
-//    char* p1 = mystrchr(str1, symbol);
-//
-//    if (p1)
-//        cout << "Символ знайдено: "
-//        << p1 << endl;
-//    else
-//        cout << "Символ не знайдено" << endl;
-//
-//    char substr[100];
-//
-//    cout << "\nВведіть підрядок для пошуку: ";
-//    cin.ignore();
-//    cin.getline(substr, 100);
-//
-//    char* p2 = mystrstr(str1, substr);
-//
-//    if (p2)
-//        cout << "Підрядок знайдено: "
-//        << p2 << endl;
-//    else
-//        cout << "Підрядок не знайдено" << endl;
+//    cout << "Готово." << endl;
 //
 //    return 0;
 //}
