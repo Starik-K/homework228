@@ -1,0 +1,185 @@
+/*задание 1*/"""#include <iostream>
+#include <string>
+using namespace std;
+
+class Student
+{
+private:
+    string pib;
+    string data;
+    string telefon;
+    string gorod;
+    string strana;
+    string zavedenie;
+    string gorodZavedenia;
+    string stranaZavedenia;
+    int gruppa;
+
+public:
+    void vvod()
+    {
+        cout << "введите PIB: ";
+        getline(cin, pib);
+
+        cout << "введите дату рождения: ";
+        getline(cin, data);
+
+        cout << "введите телефон: ";
+        getline(cin, telefon);
+
+        cout << "введите город: ";
+        getline(cin, gorod);
+
+        cout << "введите страну: ";
+        getline(cin, strana);
+
+        cout << "введите учебное заведение: ";
+        getline(cin, zavedenie);
+
+        cout << "введите город уч. заведения: ";
+        getline(cin, gorodZavedenia);
+
+        cout << "введите страну уч. заведения: ";
+        getline(cin, stranaZavedenia);
+
+        cout << "введите номер группы: ";
+        cin >> gruppa;
+    }
+
+    void pokaz()
+    {
+        cout << "PIB: " << pib << endl;
+        cout << "Data rozhdeniya: " << data << endl;
+        cout << "Telefon: " << telefon << endl;
+        cout << "Gorod: " << gorod << endl;
+        cout << "Strana: " << strana << endl;
+        cout << "Uchebnoe zavedenie: " << zavedenie << endl;
+        cout << "Gorod uchebnogo zavedeniya: " << gorodZavedenia << endl;
+        cout << "Strana uchebnogo zavedeniya: " << stranaZavedenia << endl;
+        cout << "Gruppa: " << gruppa << endl;
+    }
+
+    string getPib()
+    {
+        return pib;
+    }
+
+    int getGruppa()
+    {
+        return gruppa;
+    }
+};
+
+int main()
+{
+    Student a;
+
+    a.vvod();
+
+    cout << endl;
+
+    a.pokaz();
+
+    cout << endl;
+    cout << "PIB через акцесорс: " << a.getPib() << endl;
+    cout << "Gruppa через акцессорс: " << a.getGruppa() << endl;
+
+    return 0;
+"""
+/*задание2*/
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+class Tochka
+{
+private:
+    int x;
+    int y;
+    int z;
+
+public:
+    void vvod()
+    {
+        cout << "введите x: ";
+        cin >> x;
+
+        cout << "введите y: ";
+        cin >> y;
+
+        cout << "введите z: ";
+        cin >> z;
+    }
+
+    void pokaz()
+    {
+        cout << "x = " << x << endl;
+        cout << "y = " << y << endl;
+        cout << "z = " << z << endl;
+    }
+
+    int getX()
+    {
+        return x;
+    }
+
+    int getY()
+    {
+        return y;
+    }
+
+    int getZ()
+    {
+        return z;
+    }
+
+    void sohranit()
+    {
+        ofstream file("tochka.txt");
+
+        file << x << endl;
+        file << y << endl;
+        file << z << endl;
+
+        file.close();
+    }
+
+    void zagruzit()
+    {
+        ifstream file("tochka.txt");
+
+        file >> x;
+        file >> y;
+        file >> z;
+
+        file.close();
+    }
+};
+
+int main()
+{
+    Tochka a;
+
+    a.vvod();
+
+    cout << endl;
+    a.pokaz();
+
+    cout << endl;
+
+    cout << "X через акцесор: " << a.getX() << endl;
+    cout << "Y через акцесор: " << a.getY() << endl;
+    cout << "Z через акцесор: " << a.getZ() << endl;
+
+    a.sohranit();
+
+    cout << endl;
+    cout << "данные сохранены в файл." << endl;
+
+    a.zagruzit();
+
+    cout << "данные загружены с файла:" << endl;
+    a.pokaz();
+
+    return 0;
+}
